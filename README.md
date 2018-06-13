@@ -14,5 +14,5 @@
 4) Functions that are bounded between 0 and 1 work well
 
 # Neat Examples:
-    - =-0.0000015*(((x**3)-1)*(x-50)) from x=1 to x=50
-    - =sin(abs((0.2*x)))
+    - =-0.0000015*(((x**3)-1)*(x-50)) from X=1 to X=50 (50 frames total)
+    - =sin(abs((0.2*x))) from X=0 to X=49 (50 frames total)
