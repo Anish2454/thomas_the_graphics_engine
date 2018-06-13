@@ -2,6 +2,7 @@ import mdl
 from display import *
 from matrix import *
 from draw import *
+import parser as PEMDAS
 
 num_frames = 1
 basename = "default"
@@ -80,20 +81,31 @@ def second_pass(commands):
         args = command['args']
 
         if c == "vary":
+            print args
             knob = command['knob']
             start_frame = args[0]
             end_frame = args[1]
-            start_val = args[2]
-            end_val = args[3]
-            increment = (end_val - start_val) / (end_frame - start_frame)
-            curr = start_val
+            if len(args) == 4:
+                start_val = args[2]
+                end_val = args[3]
+                increment = (end_val - start_val) / (end_frame - start_frame)
+                curr = start_val
 
-            for i in range(int(start_frame), int(end_frame + 1)):
-                #print "curr: " + str(curr)
-                if i == (end_frame):
-                    curr = end_val
-                knobs[i][knob] = curr
-                curr += increment
+                for i in range(int(start_frame), int(end_frame + 1)):
+                    #print "curr: " + str(curr)
+                    if i == (end_frame):
+                        curr = end_val
+                    knobs[i][knob] = curr
+                    curr += increment
+            if len(args) == 3:
+                equation = args[2][1:len(args[2]) + 1]
+                code = PEMDAS.expr(equation).compile()
+
+                for i in range(int(start_frame), int(end_frame + 1)):
+                    #print "curr: " + str(curr)
+                    x = i
+                    knobs[i][knob] = eval(code)
+                    # curr += increment
 
 def run(filename):
     """

@@ -14,41 +14,41 @@ tokens = (
     "AMBIENT",
     "TORUS",
     "SPHERE",
-    "BOX", 
-    "LINE", 
-    "MESH", 
-    "TEXTURE", 
-    "SET", 
-    "MOVE", 
-    "SCALE", 
-    "ROTATE", 
-    "BASENAME", 
-    "SAVE_KNOBS", 
-    "TWEEN", 
-    "FRAMES", 
-    "VARY", 
-    "PUSH", 
-    "POP", 
-    "SAVE", 
-    "GENERATE_RAYFILES", 
-    "SHADING", 
-    "SHADING_TYPE", 
-    "SET_KNOBS", 
-    "FOCAL", 
-    "DISPLAY", 
-    "SCREEN", 
-    "WEB", 
+    "BOX",
+    "LINE",
+    "MESH",
+    "TEXTURE",
+    "SET",
+    "MOVE",
+    "SCALE",
+    "ROTATE",
+    "BASENAME",
+    "SAVE_KNOBS",
+    "TWEEN",
+    "FRAMES",
+    "VARY",
+    "PUSH",
+    "POP",
+    "SAVE",
+    "GENERATE_RAYFILES",
+    "SHADING",
+    "SHADING_TYPE",
+    "SET_KNOBS",
+    "FOCAL",
+    "DISPLAY",
+    "SCREEN",
+    "WEB",
     "CO"
 )
 
 reserved = {
-    "x" : "XYZ", 
-    "y" : "XYZ", 
-    "z" : "XYZ", 
-    "screen" : "SCREEN", 
+    "x" : "XYZ",
+    "y" : "XYZ",
+    "z" : "XYZ",
+    "screen" : "SCREEN",
     "light" : "LIGHT",
     "constants" : "CONSTANTS",
-    "save_coord_system" : "SAVE_COORDS", 
+    "save_coord_system" : "SAVE_COORDS",
     "camera" : "CAMERA",
     "ambient" : "AMBIENT",
     "torus" : "TORUS",
@@ -91,7 +91,7 @@ def t_ID(t):
     return t
 
 def t_STRING(t):
-    r'\.[a-zA-Z_0-9]*[a-zA-Z_][a-zA-Z_0-9]*'
+    r'[a-zA-Z_0-9=*+/()-.][a-zA-Z_0-9*+/()-.]*'
     return t
 
 def t_DOUBLE(t):
@@ -279,7 +279,8 @@ def p_command_basename(p):
     commands.append(cmd)
 
 def p_command_vary(p):
-    """command : VARY SYMBOL NUMBER NUMBER NUMBER NUMBER"""
+    """command : VARY SYMBOL NUMBER NUMBER NUMBER NUMBER
+               | VARY SYMBOL NUMBER NUMBER TEXT"""
     cmd = {'op' : p[1], 'args' : p[3:], 'knob' : p[2]}
     symbols[p[2]] = ['knob', 0]
     commands.append(cmd)
