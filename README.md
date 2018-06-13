@@ -6,3 +6,13 @@
     - ex: VARY right 0 49 69 109 =abs(sin(0.2*))
     - The last 2 numbers should specify a range in your mathematical function that is the same size as the range of your frames
     - The final argument should be a mathematical function that begins with an "="
+
+# Specifics:
+1) Exponents are specified with "**"
+2) sine and cosine are specified with "sin(x)" and "cos(x)"
+3) Absolute Value is specified with "abs(x)"
+4) Functions that are bounded between 0 and 1 work well
+
+# Neat Examples:
+    - =-0.0000015*(((x**3)-1)*(x-50)) from x=1 to x=50
+    - =sin(abs((0.2*x)))
