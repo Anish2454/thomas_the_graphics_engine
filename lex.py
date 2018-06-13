@@ -308,8 +308,6 @@ class Lexer:
         lexignore = self.lexignore
         lexdata   = self.lexdata
 
-        print lexdata
-        print lexpos
 
         while lexpos < lexlen:
             # This code provides some short-circuit code for whitespace, tabs, and other ignored characters
@@ -507,7 +505,6 @@ def _form_master_re(relist,reflags,ldict,toknames):
                 else:
                     lexindexfunc[i] = (None, toknames[f])
 
-        print regex
 
         return [(lexre,lexindexfunc)],[regex],[lexindexnames]
     except Exception:

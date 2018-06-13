@@ -85,9 +85,9 @@ def second_pass(commands):
             knob = command['knob']
             start_frame = args[0]
             end_frame = args[1]
+            start_val = args[2]
+            end_val = args[3]
             if len(args) == 4:
-                start_val = args[2]
-                end_val = args[3]
                 increment = (end_val - start_val) / (end_frame - start_frame)
                 curr = start_val
 
@@ -97,15 +97,18 @@ def second_pass(commands):
                         curr = end_val
                     knobs[i][knob] = curr
                     curr += increment
-            if len(args) == 3:
-                equation = args[2][1:len(args[2]) + 1]
+            if len(args) == 5:
+                equation = args[4][1:len(args[4]) + 1]
                 code = PEMDAS.expr(equation).compile()
-
-                for i in range(int(start_frame), int(end_frame + 1)):
-                    #print "curr: " + str(curr)
-                    x = i
-                    knobs[i][knob] = eval(code)
-                    # curr += increment
+                if end_val - start_val == end_frame - start_frame:
+                    for i in range(int(start_val), int(end_val)):
+                        #print "curr: " + str(curr)
+                        x = i
+                        knobs[int(i-start_val)][knob] = eval(code)
+                        # curr += increment
+                else: 
+                    print "VARY ERROR: Function range does not match frame range"
+                    return 
 
 def run(filename):
     """

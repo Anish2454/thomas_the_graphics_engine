@@ -280,7 +280,7 @@ def p_command_basename(p):
 
 def p_command_vary(p):
     """command : VARY SYMBOL NUMBER NUMBER NUMBER NUMBER
-               | VARY SYMBOL NUMBER NUMBER TEXT"""
+               | VARY SYMBOL NUMBER NUMBER NUMBER NUMBER TEXT"""
     cmd = {'op' : p[1], 'args' : p[3:], 'knob' : p[2]}
     symbols[p[2]] = ['knob', 0]
     commands.append(cmd)
