@@ -1,0 +1,5 @@
+frames 50
+push
+move 300 0 0 right
+sphere 50 50 0 50
+vary right 0 49 1 50 =-0.0000015*(((x**3)-1)*(x-50))
