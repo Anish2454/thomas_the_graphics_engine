@@ -15,4 +15,4 @@
 
 # Neat Examples:
     - =-0.0000015*(((x**3)-1)*(x-50)) from X=1 to X=50 (50 frames total)
-    - =sin(abs((0.2*x))) from X=0 to X=49 (50 frames total)
+    - =abs(sin((0.2*x))) from X=0 to X=49 (50 frames total)
