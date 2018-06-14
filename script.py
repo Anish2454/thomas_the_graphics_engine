@@ -81,7 +81,7 @@ def second_pass(commands):
         args = command['args']
 
         if c == "vary":
-            print args
+            #print args
             knob = command['knob']
             start_frame = args[0]
             end_frame = args[1]
@@ -106,9 +106,9 @@ def second_pass(commands):
                         x = i
                         knobs[int(i-start_val)][knob] = eval(code)
                         # curr += increment
-                else: 
+                else:
                     print "VARY ERROR: Function range does not match frame range"
-                    return 
+                    return
 
 def run(filename):
     """
